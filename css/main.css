@@ -1,0 +1,60 @@
+body{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+
+}
+
+h1{
+	text-transform: uppercase;
+}
+
+a{
+	text-decoration: none;
+	outline: none;
+	color: #666;
+}
+
+.box{
+	width: 400px;
+	padding: 40px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.box input{
+	text-align: center;
+	border: 0;
+	background: none;
+	display: block;
+	margin: 20px auto;
+	border: 2px solid #000;
+	padding: 14px 10px;
+	width: 200px;
+	transition: 0.25s;
+	border-radius: 20px;
+	outline: none;
+
+
+}
+
+a:hover{
+	text-decoration: underline;
+	color:black;
+}
+
+.box input:focus {
+	width: 250px;
+	background-color: #666;
+	color:#fff;
+}
+
+.box input:hover {
+	width: 250px;
+	background-color: #666;
+	color:#fff;
+}
+
