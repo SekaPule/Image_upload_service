@@ -8,7 +8,7 @@ class PDOUsing
 {
     private $MPDO;
 
-    function __construct($dbname = "image_upload_service", $hostname = "localhost", $user = "root", $password = ""){
+    public function __construct($dbname = "image_upload_service", $hostname = "localhost", $user = "root", $password = ""){
         try {
             $this->MPDO = new PDO("mysql:dbname={$dbname};host={$hostname}",$user,$password);
             return $this->MPDO;
@@ -17,26 +17,29 @@ class PDOUsing
         }
     }
 
-    function selectPDO($tb, $cols, $where="", $order="", $limit=""){
+    public function selectPDO($tb, $cols, $special,$where="", $order="", $limit=""){
         $sql ="SELECT {$cols} FROM  `{$tb}` {$where} {$order} {$limit}";
         $rs = $this->MPDO->query($sql);
         $rs->execute();
-        if($where != ""){
-            $row = $rs->fetchAll(PDO::FETCH_ASSOC);
+        if($special === "f"){
+            $row = $rs->fetch(PDO::FETCH_ASSOC);
             return $row;
-        }else{
+        }else if($special === "fa"){
             $row = $rs->fetchAll(PDO::FETCH_ASSOC);
             return $row;
         }
     }
 
-    function insertPDO($tb, $cols, $values){
-        $sql = "INSERT INTO {$tb}({$cols}) VALUES ({$values})";
+    public function insertPDO($tb, $cols, $values){
+        $values_count = count($values);
+        $questions = array_fill(0, $values_count, '?');
+        $tokens = implode(', ', $questions);
+        $sql = "INSERT INTO {$tb}({$cols}) VALUES ($tokens)";
         $rs = $this->MPDO->prepare($sql);
-        $rs->execute();
+        $rs->execute($values);
     }
 
-    function deletePDO($tb, $where){
+    public function deletePDO($tb, $where){
         $sql = "DELETE FROM {$tb} {$where}";
         $rs = $this->MPDO->prepare($sql);
         $rs->execute();

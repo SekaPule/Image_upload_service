@@ -5,13 +5,13 @@
 
     if (isset($_POST["start"])){
         $login = $_POST["username"];
-        $password = md5($_POST["password"]);
+        $password = $_POST["password"];
         $user = $userObj->getUserWhereLogin($login);
-        $_SESSION["User_ID"]= $user[0]['id'];
+        $_SESSION["User_ID"]= $user['id'];
         $_SESSION["User_name"]=$login;
 
         if ($user != null){
-            if($password === $user[0]['password']){
+            if(password_verify($password, $user['password'])){
                 header('Location: Lenta.php');
             }
         }

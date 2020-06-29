@@ -4,8 +4,8 @@
 
     if (isset($_POST["start"])){
         $login = $_POST["username"];
-        $password = ($_POST["password"]);
-        $userObj->AddUser($login,md5($password));
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        $userObj->AddUser($login, $password);
         header("Location: index.php");
     }
  ?>

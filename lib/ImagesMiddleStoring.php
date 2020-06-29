@@ -3,9 +3,9 @@
 
 class ImagesMiddleStoring
 {
-    function __construct(){}
+    public function __construct(){}
 
-    function reArrayFiles($file_post) {
+    public function reArrayFiles($file_post) {
         $file_ary = [];
         $file_count = count($file_post['name']);
         $file_keys = array_keys($file_post);

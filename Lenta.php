@@ -22,6 +22,7 @@
                 <nav class="nav">
                     <a class="nav__link" href="Lenta.php">Lenta</a>
                     <?php echo "<a class='nav__link' href='home_page.php'>$user_name</a>" ?>
+                    <a class="nav__link" href="upload_image.php">Upload</a>
                     <a class="nav__link" href="index.php">Logout</a>
                 </nav>
             </div>

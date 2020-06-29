@@ -5,16 +5,16 @@ class ImagesTakerFromDB extends PDOUsing
 {
     private $table;
 
-    function __construct($table){
+    public function __construct($table){
         parent::__construct();
         $this->table = $table;
     }
 
-    function takeAllImagesFromDB(){
-        return $this->selectPDO($this->table,"*");
+    public function takeAllImagesFromDB(){
+        return $this->selectPDO($this->table,"*","fa");
     }
 
-    function takeUsersImagesFromDB($user_id){
-        return $this->selectPDO($this->table,"*","Where user_id = '$user_id'");
+    public function takeUsersImagesFromDB($user_id){
+        return $this->selectPDO($this->table,"*","fa","Where user_id = '$user_id'");
     }
 }
